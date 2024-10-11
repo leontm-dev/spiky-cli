@@ -18,8 +18,9 @@
 		"spiky.js"
 	],
 	"files": [
-		"index.js",
-		"utils"
+		"dist/index.js",
+		"dist/commands",
+		"dist/functions"
 	],
 	"scripts": {
 		"format": "prettier --write \"./**/*.{ts,js,json}\"",
