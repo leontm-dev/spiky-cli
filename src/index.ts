@@ -8,12 +8,16 @@ import args from 'args';
 
 import versionCommand from './commands/version.js';
 import helpCommand from './commands/help.js';
+import buildCommand from './commands/build.js';
+import initCommand from './commands/init.js';
 
 // Code
 
 // Commands
 args.command('version', 'Prints the current version', versionCommand, ['v'])
 	.command('help', 'Displays help information', helpCommand)
+	.command('build', 'Builds the project', buildCommand, ['b'])
+	.command('init', 'Initializes the project', initCommand)
 	// Options
 	.option(
 		['H', 'help'],
