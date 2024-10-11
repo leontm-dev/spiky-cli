@@ -28,37 +28,6 @@
     "type": "buymeacoffee",
     "url": "https://www.buymeacoffee.com/leontm"
   },
-  "badges": [
-    {
-      "href": "https://img.shields.io/github/issues/leontm-dev/spiky-cli",
-      "url": "https://img.shields.io/github/issues/leontm-dev/spiky-cli",
-      "description": "GitHub issues",
-      "alt": "GitHub issues",
-      "img": "https://img.shields.io/github/issues/leontm-dev/spiky-cli"
-    },
-    {
-      "url": "https://img.shields.io/github/license/leontm-dev/spiky-cli",
-      "href": "https://img.shields.io/github/license/leontm-dev/spiky-cli",
-      "description": "GitHub license",
-      "alt": "GitHub license",
-      "img": "https://img.shields.io/github/license/leontm-dev/spiky-cli"
-    },
-    {
-      "url": "https://img.shields.io/github/stars/leontm-dev/spiky-cli",
-      "href": "https://img.shields.io/github/stars/leontm-dev/spiky-cli",
-      "description": "GitHub stars",
-      "alt": "GitHub stars",
-      "img": "https://img.shields.io/github/stars/leontm-dev/spiky-cli"
-    },
-    {
-      "url": "https://img.shields.io/github/forks/leontm-dev/spiky-cli",
-      "href": "https://img.shields.io/github/forks/leontm-dev/spiky-cli",
-      "description": "GitHub forks",
-      "alt": "GitHub forks",
-      "img": "https://img.shields.io/github/forks/leontm-dev/spiky-cli"
-    }
-  ],
-  "icon": "https://raw.githubusercontent.com/leontm-dev/spiky-cli/main/assets/icon.png",
   "license": "MIT",
   "description": "This is a CLI for spiky.js, it converts your spiky.js code to Python code and is able to make the code executable on the SPIKE Prime Robot.",
   "devDependencies": {
