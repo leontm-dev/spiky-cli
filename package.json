@@ -1,14 +1,22 @@
 {
   "name": "spiky-cli",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "bin": {
+    "spiky": "dist/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "scripts": {
+    "install": "yarn",
+    "build": "tsc --build"
+  },
+  "keywords": [
+    "spiky.js",
+    "cli",
+    "node"
+  ],
+  "author": "Leon Anneken <lanneken09@gmail.com> (https://leontm.me)",
+  "license": "MIT",
+  "description": "This is a CLI for spiky.js, it converts your spiky.js code to Python code and is able to make the code executable on the SPIKE Prime Robot.",
   "devDependencies": {
     "@types/node": "^22.7.5",
     "chalk": "^5.3.0",
