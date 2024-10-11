@@ -1,42 +1,49 @@
 {
-  "name": "spiky-cli",
-  "version": "0.0.1",
-  "main": "dist/index.js",
-  "bin": {
-    "spiky": "dist/index.js"
-  },
-  "scripts": {
-    "install": "yarn",
-    "build": "tsc --build"
-  },
-  "keywords": [
-    "spiky.js",
-    "cli",
-    "node"
-  ],
-  "author": "Leon Anneken <lanneken09@gmail.com> (https://leontm.me)",
-  "bugs": {
-    "url": "https://github.com/leontm-dev/spiky-cli/issues",
-    "email": "lanneken09@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/leontm-dev/spiky-cli.git"
-  },
-  "homepage": "https://github.com/leontm-dev/spiky-cli/readme.md",
-  "funding": {
-    "type": "buymeacoffee",
-    "url": "https://www.buymeacoffee.com/leontm"
-  },
-  "license": "MIT",
-  "description": "This is a CLI for spiky.js, it converts your spiky.js code to Python code and is able to make the code executable on the SPIKE Prime Robot.",
-  "devDependencies": {
-    "@types/node": "^22.7.5",
-    "chalk": "^5.3.0",
-    "typescript": "^5.6.3",
-    "yargs": "^17.7.2"
-  },
-  "dependencies": {
-    "spiky.js": "^0.2.0"
-  }
+	"name": "spiky-cli",
+	"description": "This is the spiky-cli package. A package that can convert spiky.js code into Python code with can be run on the SPIKE Prime Robot.",
+	"version": "0.0.4",
+	"license": "MIT",
+	"type": "module",
+	"bin": {
+		"spiky-cli": "dist/index.js",
+		"spiky": "dist/index.js"
+	},
+	"author": {
+		"name": "Leon Anneken",
+		"email": "lanneken09@gmail.com",
+		"url": "https://leontm.me"
+	},
+	"keywords": [
+		"spiky-cli",
+		"spiky.js"
+	],
+	"files": [
+		"index.js",
+		"utils"
+	],
+	"scripts": {
+		"format": "prettier --write \"./**/*.{ts,js,json}\"",
+		"build": "yarn && tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/leontm-dev/spiky-cli.git"
+	},
+	"bugs": {
+		"email": "lanneken09@gmail.com",
+		"url": "https://github.com/leontm-dev/spiky-cli/issues"
+	},
+	"homepage": "https://github.com/leontm-dev/spiky-cli#readme",
+	"dependencies": {
+		"args": "^5.0.3",
+		"chalk": "^5.3.0",
+		"read-pkg": "^9.0.1",
+		"spiky.js": "^0.2.0"
+	},
+	"devDependencies": {
+		"@types/args": "^5.0.3",
+		"@types/node": "^22.7.5",
+		"prettier": "^3.3.3",
+		"typescript": "^5.6.3"
+	}
 }
