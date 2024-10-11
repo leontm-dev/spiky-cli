@@ -11,13 +11,16 @@ export default async function checkForOutdatedVersion() {
 		pkg.dependencies && pkg.dependencies['spiky-cli']
 			? (pkg.dependencies['spiky-cli'] as string).replace('^', '')
 			: '';
-	const latestVersion = await fetch(
-		'https://leontm.me/apps/spiky-cli/latest',
-		{ method: 'GET' }
-	)
-		.then(res => res.json())
-		.then((data: any) => data.version);
-
+	let latestVersion;
+	try {
+		latestVersion = await fetch('https://leontm.me/apps/spiky-cli/latest', {
+			method: 'GET'
+		})
+			.then(res => res.json())
+			.then((data: any) => data.version);
+	} catch (error) {
+		return;
+	}
 	if (version !== latestVersion) {
 		const output = `
     ${chalk.white.bgRgb(209, 134, 0).bold(' NOTICE ')} Your version of spiky-cli is outdated. Please update to the latest version.
