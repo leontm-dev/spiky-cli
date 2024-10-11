@@ -1,7 +1,7 @@
 {
 	"name": "spiky-cli",
 	"description": "This is the spiky-cli package. A package that can convert spiky.js code into Python code with can be run on the SPIKE Prime Robot.",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"license": "MIT",
 	"type": "module",
 	"bin": {
@@ -32,6 +32,10 @@
 	"bugs": {
 		"email": "lanneken09@gmail.com",
 		"url": "https://github.com/leontm-dev/spiky-cli/issues"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://buymeacoffee.com/leontm"
 	},
 	"homepage": "https://github.com/leontm-dev/spiky-cli#readme",
 	"dependencies": {
