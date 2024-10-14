@@ -17,6 +17,9 @@ import updateCommand from './commands/update.js';
 // Commands
 
 program.name('spiky');
+program.description(
+	'A cli tool that transpiles javascript code into python code.'
+);
 program.addCommand(
 	program
 		.createCommand('version')
