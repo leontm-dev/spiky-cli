@@ -1,7 +1,7 @@
 {
 	"name": "spiky-cli",
 	"description": "This is the spiky-cli package. A package that can convert spiky.js code into Python code with can be run on the SPIKE Prime Robot.",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"license": "MIT",
 	"type": "module",
 	"bin": {
