@@ -72,3 +72,4 @@ assets/img/.DS_Store
 # .vscode
 
 /dist
+spiky.config.json
