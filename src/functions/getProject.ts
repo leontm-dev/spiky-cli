@@ -17,7 +17,11 @@ export default function getProject(folderName: string) {
 		return null;
 	}
 
-	const output = { manifest: {}, projectbody: {}, icon: '' };
+	const output: {
+		manifest: Record<string, any>;
+		projectbody: { main: string };
+		icon: string;
+	} = { manifest: {}, projectbody: { main: '' }, icon: '' };
 
 	const files = fs.readdirSync(folderName);
 	for (const file of files) {
