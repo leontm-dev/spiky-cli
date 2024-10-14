@@ -4,11 +4,11 @@ import fs from 'fs';
 
 // Code
 
-export default async function checkForCorrectCodebase(
+export default function checkForCorrectCodebase(
 	folderName: string
-): Promise<boolean> {
+): boolean | null {
 	if (!fs.existsSync(folderName)) {
-		return false;
+		return null;
 	}
 
 	const files = fs.readdirSync(folderName);
