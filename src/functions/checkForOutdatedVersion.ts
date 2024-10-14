@@ -5,7 +5,7 @@ import chalk from 'chalk';
 
 // Code
 
-export default async function checkForOutdatedVersion() {
+export default async function checkForOutdatedVersion(): Promise<boolean> {
 	const pkg = await readPackage();
 	const version =
 		pkg.dependencies && pkg.dependencies['spiky-cli']
@@ -19,7 +19,7 @@ export default async function checkForOutdatedVersion() {
 			.then(res => res.json())
 			.then((data: any) => data.version);
 	} catch (error) {
-		return;
+		return false;
 	}
 	if (version !== latestVersion) {
 		const output = `
@@ -28,4 +28,5 @@ export default async function checkForOutdatedVersion() {
         `;
 		console.log(output);
 	}
+	return version !== latestVersion;
 }
