@@ -8,9 +8,10 @@ import { program } from 'commander';
 
 import versionCommand from './commands/version.js';
 import helpCommand from './commands/help.js';
-import buildCommand from './commands/build.js';
-import initCommand from './commands/init.js';
+import buildCommand from './commands/build/index.js';
+import initCommand from './commands/init/index.js';
 import updateCommand from './commands/update.js';
+import { SpikyConfig } from './types/SpikyConfig.js';
 
 // Code
 
@@ -40,9 +41,7 @@ program.addCommand(
 		.createCommand('help')
 		.action(helpCommand)
 		.description('Displays help information'),
-	{
-		isDefault: true
-	}
+	{ isDefault: true }
 );
 program.addCommand(program.createCommand('build').action(buildCommand), {
 	isDefault: false
@@ -56,3 +55,5 @@ program.addCommand(
 );
 
 program.parse(process.argv);
+
+export { SpikyConfig };
