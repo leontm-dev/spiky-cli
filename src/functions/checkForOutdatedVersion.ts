@@ -6,6 +6,9 @@ import chalk from 'chalk';
 // Code
 
 export default async function checkForOutdatedVersion(): Promise<boolean> {
+	process.stdout.write(
+		`${chalk.yellowBright.italic(' [1/3] ')} Checking for newest version of spiky-cli`
+	);
 	const pkg = await readPackage();
 	const version =
 		pkg.dependencies && pkg.dependencies['spiky-cli']
