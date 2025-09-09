@@ -1,36 +1,57 @@
 // Imports
 
-import fs from 'fs';
+import { existsSync } from 'fs';
+import { readFile } from 'fs/promises';
+import chalk from 'chalk';
+
+// Project-Imports
+
+import { type SpikyConfig } from '../types/SpikyConfig.js';
+import { FunctionIndexes } from '../types/functionIndex.js';
+import formSteps from './formSteps.js';
+import updateOldConsole from './updateOldConsole.js';
 
 // Code
 
-export default function checkForSpikyConfig(): {
-	found: boolean;
-	folderName: any | null;
-} {
-	if (fs.existsSync('spiky.config.json')) {
-		const content = fs.readFileSync('spiky.config.json');
-		if (!content) {
-			return {
-				found: false,
-				folderName: null
-			};
+export default async function checkForSpikyConfig(
+	functionIndexes: FunctionIndexes
+): Promise<{ found: false } | { found: true; config: SpikyConfig }> {
+	process.stdout.write(
+		`${chalk.yellowBright.italic(formSteps(functionIndexes))} Searching for config.spiky.json file...`
+	);
+	try {
+		if (existsSync('config.spiky.json')) {
+			updateOldConsole(
+				`${chalk.yellowBright.italic(formSteps(functionIndexes))} Config file found. Content is being read...`
+			);
+			const content = await readFile('config.spiky.json').catch(err => {
+				updateOldConsole(
+					`${chalk.redBright.italic(formSteps(functionIndexes))} We couldn't read the contents properly, try again later.`
+				);
+				console.log(err);
+				throw err;
+			});
+			if (!content) {
+				updateOldConsole(
+					`${chalk.redBright.italic(formSteps(functionIndexes))} We couldn't read the contents properly, try again later.`
+				);
+				return { found: false };
+			}
+
+			const config = JSON.parse(content.toString()) as SpikyConfig;
+
+			updateOldConsole(
+				`${chalk.greenBright.italic(formSteps(functionIndexes))} SpikyConfig found.`,
+				true
+			);
+			return { found: true, config };
+		} else {
+			updateOldConsole(
+				`${chalk.yellowBright.italic(formSteps(functionIndexes))} We couldn't find any config file at path: config.spiky.json`
+			);
+			return { found: false };
 		}
-		const config = JSON.parse(content.toString());
-		if (!config.folderName) {
-			return {
-				found: true,
-				folderName: null
-			};
-		}
-		return {
-			found: true,
-			folderName: config.folderName
-		};
-	} else {
-		return {
-			found: false,
-			folderName: null
-		};
+	} catch (error) {
+		return { found: false };
 	}
 }
