@@ -1,6 +1,6 @@
 // Imports
 
-import fs from 'fs';
+import { Command } from 'commander';
 import chalk from 'chalk';
 
 // Project-Imports
@@ -15,7 +15,10 @@ import writeToExport from './writeToExport.js';
 
 // Code
 
-export default async function buildCommand() {
+export default async function buildCommand(str: any, options: Command) {
+	const now = Date.now();
+	const autoOverwrite = str.overwrite ?? false;
+	const keepLines = str.keeplines ?? false;
 	const maxSteps = 6;
 	await checkForOutdatedVersion();
 	const config = await checkForSpikyConfig({ current: 1, max: maxSteps });
@@ -42,8 +45,19 @@ export default async function buildCommand() {
 	const transpiled = transpileCode(code.code, { current: 5, max: maxSteps });
 	if (!transpiled.ok) return;
 
-	const writeCode = writeToExport(transpiled.code, config.config.export, {
-		current: 6,
-		max: maxSteps
-	});
+	const writeCode = await writeToExport(
+		transpiled.code,
+		config.config.export,
+		{
+			current: 6,
+			max: maxSteps
+		},
+		autoOverwrite,
+		keepLines
+	);
+	if (!writeCode) return;
+
+	console.log(
+		` =====  Building took ${chalk.yellowBright(Date.now() - now + 'ms')}`
+	);
 }
