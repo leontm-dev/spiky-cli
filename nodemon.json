@@ -1,11 +1,6 @@
 {
-    "watch": [
-        "src/",
-        "test/"
-    ],
-    "ext": "ts",
-    "ignore": [
-        "yarn.lock"
-    ],
-    "exec": "yarn run build && npx . build"
+  "watch": ["src/", "test/"],
+  "ext": "ts",
+  "ignore": ["yarn.lock"],
+  "exec": "yarn run build && npx . build --overwrite"
 }
