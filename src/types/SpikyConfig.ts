@@ -6,7 +6,6 @@ import { Config } from "@wasm-fmt/ruff_fmt";
 
 export type SpikyConfig = {
   inputFileName: string;
-  existingProjectFolderName: string;
   export:
     | {
         type: "project";
@@ -24,3 +23,18 @@ export type SpikyConfig = {
         formatterSettings: Config;
       };
 };
+export const SpikyConfigDefault: SpikyConfig = {
+	inputFileName: "input.spiky.ts",
+	export: { 
+		type: "python",
+		exportFileName: "export.spiky.py",
+		formatOutput: true,
+		formatterSettings: {
+			"indent_style": "tab",
+			"indent_width": 4,
+			"line_ending": "crlf",
+			"magic_trailing_comma": "respect",
+			"quote_style": "single"
+		}
+	}
+}
