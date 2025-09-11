@@ -32,6 +32,7 @@ program.addCommand(
 program.addCommand(
 	program
 		.createCommand('update')
+		.alias('u')
 		.description('Updates the spiky-cli to the lastest version')
 		.action(updateCommand),
 	{ isDefault: false }
@@ -40,15 +41,26 @@ program.addCommand(
 	program
 		.createCommand('help')
 		.action(helpCommand)
+		.alias('a')
 		.description('Displays help information'),
 	{ isDefault: true }
 );
-program.addCommand(program.createCommand('build').action(buildCommand), {
-	isDefault: false
-});
+program.addCommand(
+	program
+		.createCommand('build')
+		.description('Transpile your TypeScript Code into python.')
+		.alias('b')
+		.option('--overwrite', 'Instant overwriting?')
+		.option('--keeplines', 'Want to keep your lines?')
+		.action(buildCommand),
+	{
+		isDefault: false
+	}
+);
 program.addCommand(
 	program
 		.createCommand('init')
+		.alias('i')
 		.action((str, options) => initCommand(str, options))
 		.option('-y', 'Skips the prompt and uses the default values'),
 	{ isDefault: false }
