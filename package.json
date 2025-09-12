@@ -14,6 +14,7 @@
   },
   "license": "MIT",
   "type": "module",
+  "types": "./dist",
   "bin": {
     "spiky-cli": "dist/index.js",
     "spiky": "dist/index.js"
@@ -24,9 +25,10 @@
     "url": "https://leontm.me"
   },
   "files": [
-    "dist/index.js",
-    "dist/commands",
-    "dist/functions"
+    "dist",
+    "package.json",
+    "LICENSE",
+    "readme.md"
   ],
   "scripts": {
     "format": "prettier --write \"./**/*.{ts,js,json}\"",
