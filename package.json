@@ -32,7 +32,8 @@
   ],
   "scripts": {
     "format": "prettier --write \"./**/*.{ts,js,json}\"",
-    "build": "yarn && tsc"
+    "build": "yarn && tsc",
+    "test": "echo No test script found"
   },
   "repository": {
     "type": "git",
