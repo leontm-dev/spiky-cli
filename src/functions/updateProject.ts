@@ -9,7 +9,10 @@ import checkForCorrectCodebase from './checkForCorrectCodebase.js';
 
 // Code
 
-export default function updateProject(folderName: string, code: string) {
+export default function updateProject(
+	folderName: string,
+	code: { content: string; line?: number }[]
+) {
 	if (!fs.existsSync(folderName)) {
 		return null;
 	}
@@ -23,9 +26,10 @@ export default function updateProject(folderName: string, code: string) {
 
 	project.manifest.lastsaved = new Date();
 
+	const sortedCode = code.sort((a, b) => (a.line ?? 0) - (b.line ?? 0));
 	fs.writeFileSync(
 		`${folderName}/projectbody.json`,
-		JSON.stringify({ main: code })
+		JSON.stringify({ main: sortedCode.map(item => item.content).join('\n') })
 	);
 	fs.writeFileSync(
 		`${folderName}/manifest.json`,
