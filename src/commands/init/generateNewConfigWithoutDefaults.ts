@@ -23,6 +23,7 @@ export default async function generateNewConfigWithoutDefault(
         formSteps(functionIndexes)
       )} Waiting for your input`
     );
+    console.log("");
     await inquirer
       .prompt([
         {
@@ -127,7 +128,11 @@ export default async function generateNewConfigWithoutDefault(
           );
           throw err;
         });
-      defaultConfig.export.exportFileName = answers.exportfileName;
+      defaultConfig.export.exportFileName = answers.exportfileName.incluces(
+        ".py"
+      )
+        ? answers.exportfileName
+        : answers.exportfileName + ".py";
       defaultConfig.export.formatOutput = answers.formatted === "formatted";
     } else {
       return false;

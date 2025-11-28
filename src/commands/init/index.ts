@@ -61,7 +61,7 @@ export default async function initCommand(str: any, options: Command) {
       return;
     } else {
       updateOldConsole(
-        `${chalk.grey.italic(
+        `${chalk.green.italic(
           formSteps({ current: 2, max: maxSteps })
         )} Overwriting the existing config.spiky.json file.`,
         true
@@ -73,6 +73,8 @@ export default async function initCommand(str: any, options: Command) {
   } else {
     await generateNewConfigWithoutDefault({ current: 3, max: maxSteps });
   }
+  console.log("");
+  process.stdout.cursorTo(0);
   console.log(
     ` =====  Initializing took ${chalk.yellowBright(Date.now() - now + "ms")}`
   );

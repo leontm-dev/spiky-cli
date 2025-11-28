@@ -19,7 +19,6 @@ import writeToExport from "./writeToExport.js";
 export default async function buildCommand(str: any, options: Command) {
   const now = Date.now();
   const autoOverwrite = str.overwrite ?? false;
-  const keepLines = str.keeplines ?? false;
   const maxSteps = 6;
   await checkForOutdatedVersion();
   const config = await checkForSpikyConfig({ current: 1, max: maxSteps });
