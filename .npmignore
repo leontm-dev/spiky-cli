@@ -5,3 +5,4 @@ test.ts
 /Project 1
 .github
 node_modules
+.prettierrc
