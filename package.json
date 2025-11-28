@@ -1,6 +1,6 @@
 {
   "name": "spiky-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "This is the spiky-cli package. A package that can transpile spiky.js code into Python code with can be run on the SPIKE Prime Robot.",
   "keywords": [
     "spiky-cli",
