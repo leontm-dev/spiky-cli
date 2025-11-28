@@ -22,7 +22,9 @@ export default async function writeToExport(
   keepLines: boolean
 ): Promise<boolean> {
   process.stdout.write(
-    `${chalk.yellowBright.italic(formSteps(functionIndexes))} Writing code into chosen export format...`
+    `${chalk.yellowBright.italic(
+      formSteps(functionIndexes)
+    )} Writing code into chosen export format...`
   );
   const c = code.sort((a, b) => (a.line ?? 0) - (b.line ?? 0));
   let codeOutputArray: {
@@ -48,7 +50,9 @@ export default async function writeToExport(
       if (existsSync(exportConfig.exportFileName)) {
         if (!overwrite) {
           updateOldConsole(
-            `${chalk.yellowBright.italic(formSteps(functionIndexes))} Waiting for your input...`
+            `${chalk.yellowBright.italic(
+              formSteps(functionIndexes)
+            )} Waiting for your input...`
           );
           console.log("");
           const answer = await inquirer
@@ -68,7 +72,9 @@ export default async function writeToExport(
             });
           if (!answer) {
             updateOldConsole(
-              `${chalk.grey.italic(formSteps(functionIndexes))} Process canceled. Not overwriting the contents of the export file.`
+              `${chalk.grey.italic(
+                formSteps(functionIndexes)
+              )} Process canceled. Not overwriting the contents of the export file.`
             );
             return false;
           }
@@ -81,7 +87,9 @@ export default async function writeToExport(
             : sortedCode
         );
         updateOldConsole(
-          `${chalk.greenBright.italic(formSteps(functionIndexes))} Wrote transpiled code into export file`,
+          `${chalk.greenBright.italic(
+            formSteps(functionIndexes)
+          )} Wrote transpiled code into export file`,
           true
         );
         return true;
@@ -93,7 +101,9 @@ export default async function writeToExport(
             : sortedCode
         );
         updateOldConsole(
-          `${chalk.greenBright.italic(formSteps(functionIndexes))} Wrote transpiled code into export file`,
+          `${chalk.greenBright.italic(
+            formSteps(functionIndexes)
+          )} Wrote transpiled code into export file`,
           true
         );
         return true;
@@ -106,16 +116,21 @@ export default async function writeToExport(
         })
       );
       updateOldConsole(
-        `${chalk.greenBright.italic(formSteps(functionIndexes))} Wrote transpiled code into export folder`,
+        `${chalk.greenBright.italic(
+          formSteps(functionIndexes)
+        )} Wrote transpiled code into export folder`,
         true
       );
       return true;
     }
   } catch (error) {
     updateOldConsole(
-      `${chalk.redBright.italic(formSteps(functionIndexes))} During writing, something unexpected happened.`
+      `${chalk.redBright.italic(
+        formSteps(functionIndexes)
+      )} During writing, something unexpected happened.`
     );
-    console.log(error);
+    console.log("");
+    console.error(error);
     return false;
   }
 }
