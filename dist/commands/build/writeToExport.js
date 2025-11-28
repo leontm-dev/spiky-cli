@@ -6,27 +6,18 @@ import init, { format } from "@wasm-fmt/ruff_fmt";
 // Project-Imports
 import formSteps from "../../functions/formSteps.js";
 import updateOldConsole from "../../functions/updateOldConsole.js";
+import { PythonImports } from "../../types/imports.record.js";
 // Code
-export default async function writeToExport(code, exportConfig, functionIndexes, overwrite, keepLines) {
+export default async function writeToExport(code, exportConfig, functionIndexes, overwrite) {
     process.stdout.write(`${chalk.yellowBright.italic(formSteps(functionIndexes))} Writing code into chosen export format...`);
-    const c = code.sort((a, b) => (a.line ?? 0) - (b.line ?? 0));
-    let codeOutputArray = [];
-    if (keepLines) {
-        for (let i = 1; i < (c[c.length - 1]?.line ?? 1); i++) {
-            const cInLine = c.find((cL) => cL.line === i);
-            if (!cInLine) {
-                codeOutputArray.push({ content: "", line: i });
-            }
-            else {
-                codeOutputArray.push(cInLine);
-            }
-        }
-    }
-    else {
-        codeOutputArray = c;
-    }
-    const sortedCode = codeOutputArray.map((line) => line.content).join("\n");
     try {
+        const imports = code.imports
+            .map((i) => {
+            const record = PythonImports[i.path];
+            return record ?? `# Import at ${i.path} not found.`;
+        })
+            .join("\n");
+        const fullCode = imports + "\n\n" + code.content;
         if (exportConfig.type === "python") {
             await init();
             if (existsSync(exportConfig.exportFileName)) {
@@ -53,22 +44,22 @@ export default async function writeToExport(code, exportConfig, functionIndexes,
                     }
                 }
                 writeFileSync(exportConfig.exportFileName, exportConfig.formatOutput
-                    ? format(sortedCode, undefined, exportConfig.formatterSettings)
-                    : sortedCode);
+                    ? format(fullCode, undefined, exportConfig.formatterSettings)
+                    : fullCode);
                 updateOldConsole(`${chalk.greenBright.italic(formSteps(functionIndexes))} Wrote transpiled code into export file`, true);
                 return true;
             }
             else {
                 writeFileSync(exportConfig.exportFileName, exportConfig.formatOutput
-                    ? format(sortedCode, undefined, exportConfig.formatterSettings)
-                    : sortedCode);
+                    ? format(fullCode, undefined, exportConfig.formatterSettings)
+                    : fullCode);
                 updateOldConsole(`${chalk.greenBright.italic(formSteps(functionIndexes))} Wrote transpiled code into export file`, true);
                 return true;
             }
         }
         else {
             writeFileSync(exportConfig.folderName + "/projectbody.json", JSON.stringify({
-                main: sortedCode,
+                main: fullCode,
             }));
             updateOldConsole(`${chalk.greenBright.italic(formSteps(functionIndexes))} Wrote transpiled code into export folder`, true);
             return true;
@@ -76,7 +67,8 @@ export default async function writeToExport(code, exportConfig, functionIndexes,
     }
     catch (error) {
         updateOldConsole(`${chalk.redBright.italic(formSteps(functionIndexes))} During writing, something unexpected happened.`);
-        console.log(error);
+        console.log("");
+        console.error(error);
         return false;
     }
 }

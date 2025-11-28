@@ -1,4 +1,4 @@
 export const mappings = {
     'console.log': 'print'
 };
-//# sourceMappingURL=mappings.js.map
+//# sourceMappingURL=mappings.record.js.map

@@ -1,0 +1,28 @@
+// Code
+export const PythonImports = {
+    "spiky.js": "import runloop",
+    "spiky.js/app": "import app",
+    "spiky.js/app/bargraph": "from app import bargraph",
+    "spiky.js/app/display": "from app import display",
+    "spiky.js/app/linegraph": "from app import linegraph",
+    "spiky.js/app/music": "from app import music",
+    "spiky.js/app/sound": "from app import sound as app_sound",
+    "spiky.js/hub": "import hub",
+    "spiky.js/hub/button": "from hub import button",
+    "spiky.js/hub/light": "from hub import light",
+    "spiky.js/hub/lightmatrix": "from hub import light_matrix",
+    "spiky.js/hub/motionsensor": "from hub import motion_sensor",
+    "spiky.js/hub/port": "from hub import port",
+    "spiky.js/hub/sound": "from hub import sound as hub_sound",
+    "spiky.js/color": "import color",
+    "spiky.js/colormatrix": "import color_matrix",
+    "spiky.js/colorsensor": "import color_sensor",
+    "spiky.js/device": "import device",
+    "spiky.js/distancesensor": "import distance_sensor",
+    "spiky.js/forcesensor": "import force_sensor",
+    "spiky.js/motor": "import motor",
+    "spiky.js/motorpair": "import motor_pair",
+    "spiky.js/orientation": "import orientation",
+    "spiky.js/runloop": "import runloop",
+};
+//# sourceMappingURL=imports.record.js.map

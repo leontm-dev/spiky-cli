@@ -12,6 +12,6 @@ export function calculateIndent(path) {
         }
         return p.node === parentFunction.node;
     });
-    return "    ".repeat(indentationLevel);
+    return "  ".repeat(indentationLevel);
 }
 //# sourceMappingURL=calculateIndent.js.map
