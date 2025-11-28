@@ -17,5 +17,5 @@ export function calculateIndent(path: NodePath<any>): string {
     return p.node === parentFunction.node;
   });
 
-  return "    ".repeat(indentationLevel);
+  return "  ".repeat(indentationLevel);
 }
