@@ -39,7 +39,7 @@ export default async function initCommand(str, options) {
             return;
         }
         else {
-            updateOldConsole(`${chalk.grey.italic(formSteps({ current: 2, max: maxSteps }))} Overwriting the existing config.spiky.json file.`, true);
+            updateOldConsole(`${chalk.green.italic(formSteps({ current: 2, max: maxSteps }))} Overwriting the existing config.spiky.json file.`, true);
         }
     }
     if (str.y == true) {
@@ -48,6 +48,8 @@ export default async function initCommand(str, options) {
     else {
         await generateNewConfigWithoutDefault({ current: 3, max: maxSteps });
     }
+    console.log("");
+    process.stdout.cursorTo(0);
     console.log(` =====  Initializing took ${chalk.yellowBright(Date.now() - now + "ms")}`);
 }
 //# sourceMappingURL=index.js.map

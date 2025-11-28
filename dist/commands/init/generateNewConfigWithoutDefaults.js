@@ -10,6 +10,7 @@ export default async function generateNewConfigWithoutDefault(functionIndexes) {
     try {
         const defaultConfig = SpikyConfigDefault;
         updateOldConsole(`${chalk.yellowBright.italic(formSteps(functionIndexes))} Waiting for your input`);
+        console.log("");
         await inquirer
             .prompt([
             {
@@ -98,7 +99,9 @@ export default async function generateNewConfigWithoutDefault(functionIndexes) {
                 updateOldConsole(`${chalk.redBright.italic(formSteps(functionIndexes))} We could not finish the process.`);
                 throw err;
             });
-            defaultConfig.export.exportFileName = answers.exportfileName;
+            defaultConfig.export.exportFileName = answers.exportfileName.incluces(".py")
+                ? answers.exportfileName
+                : answers.exportfileName + ".py";
             defaultConfig.export.formatOutput = answers.formatted === "formatted";
         }
         else {
