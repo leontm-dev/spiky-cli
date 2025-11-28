@@ -1,6 +1,6 @@
 {
-  "watch": ["src/", "test/"],
+  "watch": ["src/", "test/", "config.spiky.json"],
   "ext": "ts",
   "ignore": ["yarn.lock"],
-  "exec": "yarn run build && npx . build --overwrite --keeplines"
+  "exec": "npm run build && npx . build --overwrite --keeplines"
 }
