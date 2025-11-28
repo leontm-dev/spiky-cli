@@ -11,40 +11,30 @@ import formSteps from "../../functions/formSteps.js";
 import { FunctionIndexes } from "../../types/functionIndex.js";
 import updateOldConsole from "../../functions/updateOldConsole.js";
 import { SpikyConfig } from "../../types/SpikyConfig.js";
+import { ITranspiledFile } from "../../types/transpiler.types.js";
+import { PythonImports } from "../../types/imports.record.js";
 
 // Code
 
 export default async function writeToExport(
-  code: { content: string; line?: number | undefined }[],
+  code: ITranspiledFile,
   exportConfig: SpikyConfig["export"],
   functionIndexes: FunctionIndexes,
-  overwrite: boolean,
-  keepLines: boolean
+  overwrite: boolean
 ): Promise<boolean> {
   process.stdout.write(
     `${chalk.yellowBright.italic(
       formSteps(functionIndexes)
     )} Writing code into chosen export format...`
   );
-  const c = code.sort((a, b) => (a.line ?? 0) - (b.line ?? 0));
-  let codeOutputArray: {
-    content: string;
-    line?: number | undefined;
-  }[] = [];
-  if (keepLines) {
-    for (let i = 1; i < (c[c.length - 1]?.line ?? 1); i++) {
-      const cInLine = c.find((cL) => cL.line === i);
-      if (!cInLine) {
-        codeOutputArray.push({ content: "", line: i });
-      } else {
-        codeOutputArray.push(cInLine);
-      }
-    }
-  } else {
-    codeOutputArray = c;
-  }
-  const sortedCode = codeOutputArray.map((line) => line.content).join("\n");
   try {
+    const imports = code.imports
+      .map((i) => {
+        const record = PythonImports[i.path];
+        return record ?? `# Import at ${i.path} not found.`;
+      })
+      .join("\n");
+    const fullCode = imports + "\n\n" + code.content;
     if (exportConfig.type === "python") {
       await init();
       if (existsSync(exportConfig.exportFileName)) {
@@ -83,8 +73,8 @@ export default async function writeToExport(
         writeFileSync(
           exportConfig.exportFileName,
           exportConfig.formatOutput
-            ? format(sortedCode, undefined, exportConfig.formatterSettings)
-            : sortedCode
+            ? format(fullCode, undefined, exportConfig.formatterSettings)
+            : fullCode
         );
         updateOldConsole(
           `${chalk.greenBright.italic(
@@ -97,8 +87,8 @@ export default async function writeToExport(
         writeFileSync(
           exportConfig.exportFileName,
           exportConfig.formatOutput
-            ? format(sortedCode, undefined, exportConfig.formatterSettings)
-            : sortedCode
+            ? format(fullCode, undefined, exportConfig.formatterSettings)
+            : fullCode
         );
         updateOldConsole(
           `${chalk.greenBright.italic(
@@ -112,7 +102,7 @@ export default async function writeToExport(
       writeFileSync(
         exportConfig.folderName + "/projectbody.json",
         JSON.stringify({
-          main: sortedCode,
+          main: fullCode,
         })
       );
       updateOldConsole(
