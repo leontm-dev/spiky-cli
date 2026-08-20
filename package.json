@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@wasm-fmt/ruff_fmt": "^0.10.0",
-    "ast-transpiler": "^0.0.72",
+    "ast-transpiler": "^0.0.95",
     "chalk": "^5.3.0",
     "commander": "^14.0.2",
     "inquirer": "^13.0.1",
