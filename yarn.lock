@@ -322,10 +322,10 @@
   resolved "https://registry.yarnpkg.com/@typescript/typescript-win32-x64/-/typescript-win32-x64-7.0.2.tgz#cf3b7b0d6ce5635daca4c8e01c189cdcde47ec3c"
   integrity sha512-0BQ3HkAHHlKLSp1qRvf3SUhGpGsDuhB/jgFw75guyqbxJqEaS0Cw/VFO8i2nHglJUzQCRtMMR/IBAKE3ETMC4g==
 
-"@wasm-fmt/ruff_fmt@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.npmjs.org/@wasm-fmt/ruff_fmt/-/ruff_fmt-0.10.0.tgz"
-  integrity sha512-U6tH4+2IE13puYg3KV33wYfnExkHG9NO7k3wW03Nrvajy2KMYpnPqd3r/atjvwRm758qIQ6awGDVMAaOyUeJHw==
+"@wasm-fmt/ruff_fmt@^0.15.20":
+  version "0.15.20"
+  resolved "https://registry.yarnpkg.com/@wasm-fmt/ruff_fmt/-/ruff_fmt-0.15.20.tgz#50bb58e182ec7d78dd29d7b28dd8077b52d0f7be"
+  integrity sha512-PYij4wTiDSTx6MyBGHSY0nWDjSiTbOB3moPJiZTBL8F0JZLEfHAi4lYAn9SC9Hzm8tVeTnL7Qyf1iPW0TKHVEg==
 
 acorn-walk@^8.1.1:
   version "8.3.4"
