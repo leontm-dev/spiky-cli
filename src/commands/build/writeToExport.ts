@@ -3,7 +3,7 @@
 import { existsSync, read, writeFileSync } from "fs";
 import chalk from "chalk";
 import inquirer from "inquirer";
-import init, { format } from "@wasm-fmt/ruff_fmt";
+import { format } from "@wasm-fmt/ruff_fmt";
 
 // Project-Imports
 
@@ -13,6 +13,7 @@ import updateOldConsole from "../../functions/updateOldConsole.js";
 import { SpikyConfig } from "../../types/SpikyConfig.js";
 import { ITranspiledFile } from "../../types/transpiler.types.js";
 import { PythonImports } from "../../types/imports.record.js";
+import initAsync from "@wasm-fmt/ruff_fmt/web";
 
 // Code
 
@@ -20,12 +21,12 @@ export default async function writeToExport(
   code: ITranspiledFile,
   exportConfig: SpikyConfig["export"],
   functionIndexes: FunctionIndexes,
-  overwrite: boolean
+  overwrite: boolean,
 ): Promise<boolean> {
   process.stdout.write(
     `${chalk.yellowBright.italic(
-      formSteps(functionIndexes)
-    )} Writing code into chosen export format...`
+      formSteps(functionIndexes),
+    )} Writing code into chosen export format...`,
   );
   try {
     const imports = code.imports
@@ -36,13 +37,13 @@ export default async function writeToExport(
       .join("\n");
     const fullCode = imports + "\n\n" + code.content;
     if (exportConfig.type === "python") {
-      await init();
+      await initAsync();
       if (existsSync(exportConfig.exportFileName)) {
         if (!overwrite) {
           updateOldConsole(
             `${chalk.yellowBright.italic(
-              formSteps(functionIndexes)
-            )} Waiting for your input...`
+              formSteps(functionIndexes),
+            )} Waiting for your input...`,
           );
           console.log("");
           const answer = await inquirer
@@ -63,8 +64,8 @@ export default async function writeToExport(
           if (!answer) {
             updateOldConsole(
               `${chalk.grey.italic(
-                formSteps(functionIndexes)
-              )} Process canceled. Not overwriting the contents of the export file.`
+                formSteps(functionIndexes),
+              )} Process canceled. Not overwriting the contents of the export file.`,
             );
             return false;
           }
@@ -74,13 +75,13 @@ export default async function writeToExport(
           exportConfig.exportFileName,
           exportConfig.formatOutput
             ? format(fullCode, undefined, exportConfig.formatterSettings)
-            : fullCode
+            : fullCode,
         );
         updateOldConsole(
           `${chalk.greenBright.italic(
-            formSteps(functionIndexes)
+            formSteps(functionIndexes),
           )} Wrote transpiled code into export file`,
-          true
+          true,
         );
         return true;
       } else {
@@ -88,13 +89,13 @@ export default async function writeToExport(
           exportConfig.exportFileName,
           exportConfig.formatOutput
             ? format(fullCode, undefined, exportConfig.formatterSettings)
-            : fullCode
+            : fullCode,
         );
         updateOldConsole(
           `${chalk.greenBright.italic(
-            formSteps(functionIndexes)
+            formSteps(functionIndexes),
           )} Wrote transpiled code into export file`,
-          true
+          true,
         );
         return true;
       }
@@ -103,21 +104,21 @@ export default async function writeToExport(
         exportConfig.folderName + "/projectbody.json",
         JSON.stringify({
           main: fullCode,
-        })
+        }),
       );
       updateOldConsole(
         `${chalk.greenBright.italic(
-          formSteps(functionIndexes)
+          formSteps(functionIndexes),
         )} Wrote transpiled code into export folder`,
-        true
+        true,
       );
       return true;
     }
   } catch (error) {
     updateOldConsole(
       `${chalk.redBright.italic(
-        formSteps(functionIndexes)
-      )} During writing, something unexpected happened.`
+        formSteps(functionIndexes),
+      )} During writing, something unexpected happened.`,
     );
     console.log("");
     console.error(error);
