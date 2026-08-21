@@ -210,12 +210,12 @@
   resolved "https://registry.npmjs.org/@types/args/-/args-5.0.4.tgz"
   integrity sha512-TGJkOiKE2Veo++SYqV9JYV61KuqQ3lhdeYJ9jDozBYeAG78lwaEg6jcvvZ08JzjlDJFe0VBHJ0MxISATT6GJYQ==
 
-"@types/node@^24.10.1":
-  version "24.10.1"
-  resolved "https://registry.npmjs.org/@types/node/-/node-24.10.1.tgz"
-  integrity sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==
+"@types/node@^26.2.0":
+  version "26.2.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-26.2.0.tgz#5a4875a862fda8fdc57de8faa579bb81ecba1685"
+  integrity sha512-5IviulTZeRNp2vAJ514cc/HUlY5nZ9fCbq9DMyC52BrhFZACo3nI0R7qBxhQmo/d27NFe96ur/b7Wwxklda+kg==
   dependencies:
-    undici-types "~7.16.0"
+    undici-types "~8.3.0"
 
 "@types/normalize-package-data@^2.4.4":
   version "2.4.4"
@@ -698,10 +698,10 @@ typescript@^7.0.2:
     "@typescript/typescript-win32-arm64" "7.0.2"
     "@typescript/typescript-win32-x64" "7.0.2"
 
-undici-types@~7.16.0:
-  version "7.16.0"
-  resolved "https://registry.npmjs.org/undici-types/-/undici-types-7.16.0.tgz"
-  integrity sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==
+undici-types@~8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-8.3.0.tgz#44e9fc9f3244648cdea35e4f9bb2d681e9410809"
+  integrity sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==
 
 unicorn-magic@^0.4.0:
   version "0.4.0"
