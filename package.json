@@ -51,7 +51,7 @@
     "ast-transpiler": "^0.0.95",
     "chalk": "^6.0.0",
     "commander": "^15.0.0",
-    "inquirer": "^13.0.1",
+    "inquirer": "^14.0.2",
     "read-pkg": "^10.0.0",
     "spiky.js": "^0.4.0",
     "typescript": "^7.0.2"
